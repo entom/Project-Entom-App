@@ -1,0 +1,29 @@
+{
+  "name": "project-entom-app",
+  "description": "Project:Entom-App",
+  "main": "main.js",
+  "authors": [
+    "Tomasz"
+  ],
+  "license": "CC0-1.0",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "homepage": "https://github.com/niciejatomasz/Project-Entom-App",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "angular-route": "^1.6.0"
+  }
+}
