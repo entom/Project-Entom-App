@@ -1,0 +1,25 @@
+<md-content flex id="content" ng-controller="HomeController" ng-init="init()">
+    <div layout="column">
+        <br />
+        <md-content layout-padding class="autoScroll">
+            <md-input-container>
+                <label>Title</label>
+                <input ng-model="" type="text">
+            </md-input-container>
+            <md-input-container md-no-float>
+                <label>Email</label>
+                <input ng-model="_ctrl.selected.email" type="text">
+            </md-input-container>
+            <md-input-container md-no-float>
+                <label>Phone</label>
+                <input ng-model="_ctrl.selected.phone" type="text">
+            </md-input-container>
+        </md-content>
+        <section layout="row" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-info" ng-click="_ctrl.createCustomer()">Add</md-button>
+            <md-button class="md-raised md-primary" ng-click="_ctrl.saveCustomer()">Save</md-button>
+            <md-button class="md-raised md-danger" ng-click="_ctrl.cancelEdit()">Cancel</md-button>
+            <md-button class="md-raised md-warn" ng-click="_ctrl.deleteCustomer()">Delete</md-button>
+        </section>
+    </div>
+</md-content>
