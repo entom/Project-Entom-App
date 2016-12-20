@@ -8,6 +8,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css" />
 
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/angular/angular.js"></script>
@@ -31,7 +32,10 @@
             <md-button ng-click="toggleLeft()" class="md-raised">
                 Toggle Sidenav
             </md-button>
-            <h1>{{ _ctrl.selected.name }}</h1>
+            <span flex="" class="flex"></span>
+            <md-select ng-model="active_project_id" ng-change="changeActiveProject()" placeholder="Select project" class="md-no-underline" layout-align="start end">
+                <md-option ng-repeat="project in projects" value="{{project.id}}">{{project.title}}</md-option>
+            </md-select>
         </md-toolbar>
 
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
@@ -53,11 +57,13 @@
 
                 <md-list ng-cloak>
                     <md-subheader class="md-no-sticky">Projects list</md-subheader>
-                    <md-list-item ng-repeat="project in projects" ng-click="" class="noright">
+                    <md-list-item ng-repeat="project in projects" ng-click="setActiveProject($index)" class="noright">
                         <p>{{ project.title }}</p>
-                        <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
+                        <md-checkbox class="md-secondary" ng-model="project.active"></md-checkbox>
                     </md-list-item>
                 </md-list>
+
+                <md-button class="md-raised md-danger" ng-click="removeProjects()">Remove selected</md-button>
 
                 <md-button ng-click="toggleLeft()" class="md-accent">
                     Close this Sidenav

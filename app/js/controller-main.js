@@ -28,6 +28,12 @@ entomApp.controller('MainController', function ($scope, $timeout, $mdSidenav) {
     $scope.projects = [];
 
     /**
+     * active_project_id field
+     * @type {number}
+     */
+    $scope.active_project_id = 0;
+
+    /**
      * init method
      */
     $scope.init = function () {
@@ -38,6 +44,13 @@ entomApp.controller('MainController', function ($scope, $timeout, $mdSidenav) {
         $scope.db = require('./app/db/projects');
         $scope.db.init();
         $scope.getAll();
+    };
+
+    /**
+     * setActiveProject method
+     */
+    $scope.changeActiveProject = function () {
+        console.log($scope.active_project_id);
     };
 
     /**
@@ -56,8 +69,39 @@ entomApp.controller('MainController', function ($scope, $timeout, $mdSidenav) {
      */
     $scope.getAll = function () {
         $scope.db.getAll(function (rows) {
+            for (let r in rows) {
+                rows[r].active = false;
+            }
             $scope.projects = rows;
         });
+    };
+
+    /**
+     * removeProjects method
+     */
+    $scope.removeProjects = function () {
+        for(let p in $scope.projects) {
+            if($scope.projects[p].active == true) {
+                $scope.removeProject($scope.projects[p].id);
+            }
+        }
+        $scope.getAll();
+    };
+
+    /**
+     * removeProject method
+     * @param id
+     */
+    $scope.removeProject = function (id) {
+        $scope.db.remove(id);
+    };
+
+    /**
+     * setActiveProject method
+     * @param index
+     */
+    $scope.setActiveProject = function (index) {
+        $scope.projects[index].active = !$scope.projects[index].active;
     };
 
     /**

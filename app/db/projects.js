@@ -30,6 +30,16 @@ projects.insert = (data) => {
 };
 
 /**
+ * remove method
+ * @param id
+ */
+projects.remove = (id) => {
+    let stmt = db.prepare('DELETE FROM projects WHERE id = ' + id);
+    stmt.run();
+    stmt.finalize();
+};
+
+/**
  * getAll method
  * @param fn
  */
