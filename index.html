@@ -54,10 +54,8 @@
                 <md-list ng-cloak>
                     <md-subheader class="md-no-sticky">Projects list</md-subheader>
                     <md-list-item ng-repeat="project in projects" ng-click="" class="noright">
-                        <p>{{ project }}</p>
+                        <p>{{ project.title }}</p>
                         <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
-                        <md-icon md-svg-icon="communication:email"  ng-click="" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
-                        <md-icon class="md-secondary" ng-click="" aria-label="Chat" md-svg-icon="communication:message"></md-icon>
                     </md-list-item>
                 </md-list>
 

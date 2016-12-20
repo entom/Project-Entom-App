@@ -11,6 +11,11 @@ entomApp.controller('MainController', function ($scope, $timeout, $mdSidenav) {
     };
 
     /**
+     * db field
+     */
+    $scope.db = {};
+
+    /**
      * project_name field
      * @type {string}
      */
@@ -30,14 +35,29 @@ entomApp.controller('MainController', function ($scope, $timeout, $mdSidenav) {
         $scope.versions.node = process.versions.node;
         $scope.versions.chromium = process.versions.chrome;
         $scope.versions.electron = process.versions.electron;
+        $scope.db = require('./app/db/projects');
+        $scope.db.init();
+        $scope.getAll();
     };
 
     /**
      * createProject method
      */
     $scope.createProject = function () {
-        $scope.projects.push($scope.project_name);
+        $scope.db.insert({
+            title: $scope.project_name
+        });
         $scope.project_name = '';
+        $scope.getAll();
+    };
+
+    /**
+     * getAll method
+     */
+    $scope.getAll = function () {
+        $scope.db.getAll(function (rows) {
+            $scope.projects = rows;
+        });
     };
 
     /**
